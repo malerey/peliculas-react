@@ -3,19 +3,23 @@ import Hero from './Hero';
 import MoviesCategory from './MoviesCategory';
 
 class Main extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
+    this.state = {
+      categories: [
+        { category: "popular", title: "Popular" },
+        { category: "top_rated", title: "Top Rated" },
+        { category: "upcoming", title: "Upcoming" },
+        { category: "now_playing", title: "Now Playing" },
+      ]
+    }
   }
 
-  render () {
+  render() {
     return (
       <main>
         <Hero />
-
-        <MoviesCategory category="popular" title="Popular" />
-        <MoviesCategory category="top_rated" title="Top Rated" />
-        <MoviesCategory category="upcoming" title="Upcoming" />
-        <MoviesCategory category="now_playing" title="Now Playing" />
+        {this.state.categories.map(c => <MoviesCategory title={c.title} category={c.category} />)}
       </main>
     )
   }

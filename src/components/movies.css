@@ -1,0 +1,14 @@
+.movies {
+  display: flex;
+}
+
+.single_movie {
+  width: 200px;
+  height: 400px;
+  margin: 20px;
+}
+
+.single_movie img {
+  width: 100%;
+  height: auto;
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Movie from './Movie';
+import './movies.css'
 
 const API_KEY = 'a70dbfe19b800809dfdd3e89e8532c9e';
 
