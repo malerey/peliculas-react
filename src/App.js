@@ -10,26 +10,29 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      query_movies: []
     }
   }
 
-  showMovies = (movies = []) => {
+  handleQuery = q => { // esta funcion se pasa a Navbar para poder obtener la busqueda del usuario
     this.setState({
-      query_movies: movies
+      query: q
     })
   }
 
   render() {
     return (
       <div className="App">
-        <Navbar showMovies={this.showMovies} />
+        <Navbar handleQuery={this.handleQuery} />
         
         {/* <Sidebar /> */}
 
-        {this.state.query_movies.length
+ {/* conditional rendering:
+ si hay una busqueda en el estado, mostramos el componente de los resultados de la busqueda
+ si no la hay, mostramos el componente Main */}
+ 
+        {this.state.query
           ? <SearchResults
-            movies={this.state.query_movies}
+            query={this.state.query}
           />
           :
           <Main />

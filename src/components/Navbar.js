@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-const API_KEY = 'a70dbfe19b800809dfdd3e89e8532c9e';
-
 class Navbar extends Component {
   constructor (props) {
     super(props);
@@ -10,20 +8,15 @@ class Navbar extends Component {
     }
   }
 
-  handleChange = e => {
+  handleChange = e => { // esta funcion se ejecuta toda vez que el usuario escribe algo en el input
     this.setState({
-      query: e.target.value
+      query: e.target.value // guardamos en el estado del componente la busqueda del usuario
     })
   }
 
-  handleSubmit = e => {
+  handleSubmit = e => { // esta funcion se ejecuta cuando el usuario envia el formulario
     e.preventDefault()
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${this.state.query}&page=1`)
-    .then(res => res.json())
-    .then(data => {
-      this.props.showMovies(data.results)
-    })
-    
+    this.props.handleQuery(this.state.query) // le enviamos a la funcion del padre la data del estado (la busqueda del usuario)
   }
 
   render () {
@@ -33,11 +26,11 @@ class Navbar extends Component {
 
         <form onSubmit={this.handleSubmit}>
           <input type="text" 
-          onChange={this.handleChange}
+          onChange={this.handleChange} 
           />
         </form>
 
-        <div class="login">
+        <div className="login">
           login
         </div>
       </div>
