@@ -19,7 +19,11 @@ class Main extends Component {
     return (
       <main>
         <Hero />
-        {this.state.categories.map(c => <MoviesCategory title={c.title} category={c.category} />)}
+        {this.state.categories.map(c => 
+        <MoviesCategory 
+        getId={this.props.getId} 
+        title={c.title} 
+        category={c.category} />)}
       </main>
     )
   }

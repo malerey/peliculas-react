@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/Navbar';
-// import Sidebar from './components/Sidebar';
+import Sidebar from './components/Sidebar';
 import Main from './components/Main';
-import SearchResults from './components/SearchResults'
+import SearchResults from './components/SearchResults';
+import Modal from './components/Modal'
+
 
 class App extends Component {
   constructor(props) {
@@ -13,30 +15,55 @@ class App extends Component {
     }
   }
 
-  handleQuery = q => { // esta funcion se pasa a Navbar para poder obtener la busqueda del usuario
+  handleQuery = q => {
     this.setState({
-      query: q
+      query: q,
+      category: ''
     })
   }
 
+  funcionDelPadre = params => {
+    this.setState({
+      category: params,
+      query: ''
+    })
+  }
+
+  getId = id => {
+    console.log(id)
+    this.setState({
+      id: id
+    })
+  }
+
+
   render() {
+
     return (
       <div className="App">
-        <Navbar handleQuery={this.handleQuery} />
         
-        {/* <Sidebar /> */}
+        {this.state.id ?
+        <Modal 
+        id={this.state.id}
+        />
+        : ''
+        }
 
- {/* conditional rendering:
- si hay una busqueda en el estado, mostramos el componente de los resultados de la busqueda
- si no la hay, mostramos el componente Main */}
- 
-        {this.state.query
+        <Navbar handleQuery={this.handleQuery} />
+
+        <Sidebar funcionDelPadre={this.funcionDelPadre}/>
+
+        {this.state.query || this.state.category
           ? <SearchResults
             query={this.state.query}
+            category={this.state.category}
           />
           :
-          <Main />
+          <Main
+          getId={this.getId}
+          />
         }
+
 
       </div>
     );

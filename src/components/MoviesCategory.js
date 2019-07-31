@@ -32,7 +32,8 @@ class MoviesCategory extends Component {
         <h2>{this.props.title}</h2>
 
         <div className="movies">
-          {this.state.movies.map(m => <Movie data={m} />)}
+          {this.state.movies.map(m => 
+          <Movie getId={this.props.getId} data={m} />)}
         </div>
       </div>
     )
